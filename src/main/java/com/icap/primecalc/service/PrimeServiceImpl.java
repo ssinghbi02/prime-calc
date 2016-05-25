@@ -10,29 +10,11 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.rangeClosed;
 
 /**
- * Created by ssinghbi02 on 24/05/2016.
+ *
+ * {@inheritDoc}
  */
 @Service
 public class PrimeServiceImpl implements PrimeService {
-
-    private static List<Integer> process(int limit) {
-        try {
-            ForkJoinPool forkJoinPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
-            CompletableFuture<List<Integer>> primes = CompletableFuture.supplyAsync(() ->
-                    rangeClosed(2, limit)
-                            .filter(PrimeServiceImpl::isPrime)
-                            .boxed()
-                            .collect(toList()), forkJoinPool);
-            return primes.get();
-        } catch (InterruptedException e) {
-            //Handle exception, log error
-            System.out.println("error in processing");
-        } catch (ExecutionException e) {
-            //Handle exception, log error
-            System.out.println("error in processing");
-        }
-        return null;
-    }
 
     public static boolean isPrime(long n) {
         return n > 1 && rangeClosed(2, (int) sqrt(n)).noneMatch(divisor -> n % divisor == 0);
@@ -57,6 +39,25 @@ public class PrimeServiceImpl implements PrimeService {
 
         return process(limit);
 
+    }
+
+    private List<Integer> process(int limit) {
+        try {
+            ForkJoinPool forkJoinPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+            CompletableFuture<List<Integer>> primes = CompletableFuture.supplyAsync(() ->
+                    rangeClosed(2, limit)
+                            .filter(PrimeServiceImpl::isPrime)
+                            .boxed()
+                            .collect(toList()), forkJoinPool);
+            return primes.get();
+        } catch (InterruptedException e) {
+            //Handle exception, log error
+            System.out.println("error in processing");
+        } catch (ExecutionException e) {
+            //Handle exception, log error
+            System.out.println("error in processing");
+        }
+        return null;
     }
 
 }

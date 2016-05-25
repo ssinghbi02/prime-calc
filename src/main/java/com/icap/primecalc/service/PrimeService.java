@@ -3,7 +3,7 @@ package com.icap.primecalc.service;
 import java.util.List;
 
 /**
- * Created by ssinghbi02 on 24/05/2016.
+ * Interface for prime number calculation.
  */
 public interface PrimeService {
 
