@@ -2,7 +2,8 @@ The project needs java 8 and maven installed.
 
 To build the project: (all commands are run in the project folder)
 mvn clean install
-The project can be with spring boot. just run Application.java
+
+This is simple Spring Boot Application. just run Application.java
 
 
 To call the service:
