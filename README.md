@@ -16,3 +16,15 @@ The code is quite simple - it's only using Spring MVC and Java8.
 - the 'service' package with the prime service.
 - a unit test 'PrimeServiceImplTest' is testing the prime service and an integration test the controller.
 - a integration test 'PrimeServiceControllerTestIT' is integration test for the controller.
+
+Example
+
+The REST call should look like  http://your.host.com/primes/10  and should return JSON content:
+
+{
+  “Initial”:  “10
+  “Priimes”: [2,3,5,7]
+}
+ 
+
+
