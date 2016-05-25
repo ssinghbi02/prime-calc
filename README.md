@@ -2,9 +2,8 @@ The project needs java 8 and maven installed.
 
 To build the project: (all commands are run in the project folder)
 mvn clean install
-The project can be run in two ways:
-- with maven:
-mvn clean install tomcat7:run
+The project can be with spring boot. just run Application.java
+
 
 To call the service:
 curl http://localhost:8080/primes/10 -H "Accept:application/json"
